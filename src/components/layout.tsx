@@ -71,8 +71,9 @@ export const Layout = ({ children }: PropsWithChildren<unknown>) => {
               width: drawerWidth,
             },
           }}
+          anchor="right"
         >
-          <DrawerContent />
+          <DrawerContent onItemClick={handleDrawerToggle} />
         </Drawer>
         <Drawer
           variant="permanent"

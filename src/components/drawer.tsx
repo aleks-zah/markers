@@ -9,7 +9,12 @@ import {
 import { useMarkers } from '../api/provider.tsx';
 import { useMap } from 'react-leaflet';
 
-export const DrawerContent = () => {
+interface DrawerContentProps {
+  onItemClick?: () => void;
+}
+const maxZoom = 15;
+
+export const DrawerContent = ({ onItemClick }: DrawerContentProps) => {
   const { markers } = useMarkers();
   const map = useMap();
 
@@ -22,7 +27,9 @@ export const DrawerContent = () => {
           <ListItem key={id} disablePadding>
             <ListItemButton
               onClick={() => {
-                map.setView([lat, lng], map.getZoom() + 1);
+                const zoom = map.getZoom() + 1;
+                map.setView([lat, lng], zoom > maxZoom ? maxZoom : zoom);
+                onItemClick?.();
               }}
             >
               <ListItemText primary={title} />
