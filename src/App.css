@@ -1,0 +1,9 @@
+.leaflet-container {
+  top: 64px;
+  width: calc(100% - 300px);
+  height: 80vh;
+
+  @media (max-width: 600px) {
+    width: 100%;
+  }
+}
